@@ -16,9 +16,39 @@ services:
     App\:
         resource: '../src/'
         exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\CategoryFeature\:
+        resource: '../src/CategoryFeature/'
+        exclude:
+            - '../src/CategoryFeature/Domain'
+
+    App\CategoryFeatureApi\:
+        resource: '../src/CategoryFeatureApi/'
+
+    App\DoctrineDataFeature\:
+        resource: '../src/DoctrineDataFeature/'
+        exclude:
+            - '../src/DoctrineDataFeature/Domain'
+
+    App\DataManagerFeatureApi\:
+        resource: '../src/DataManagerFeatureApi/'
+
+    App\PostFeatureApi\:
+        resource: '../src/PostFeatureApi/'
+
+    App\PostFeature\:
+        resource: '../src/PostFeature/'
+
+    ##### DI Area #####
+    App\DoctrineDataFeature\Application\ApiService\CategoryService:
+        arguments:
+            $dataMapper: '@App\DoctrineDataFeature\Application\DataMapper\CategoryMapper'
+            $categoryRepository: '@App\DoctrineDataFeature\Infrastructure\Repository\CategoryRepository'
+
+    App\DoctrineDataFeature\Application\ApiService\PostService:
+        arguments:
+            $dataMapper: '@App\DoctrineDataFeature\Application\DataMapper\PostMapper'
+            $postRepository: '@App\DoctrineDataFeature\Infrastructure\Repository\PostRepository'
