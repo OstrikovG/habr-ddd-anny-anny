@@ -13,9 +13,9 @@ doctrine:
         mappings:
             App:
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+                dir: '%kernel.project_dir%/src/DoctrineDataFeature/Domain/Entity'
+                prefix: 'App\DoctrineDataFeature\Domain\Entity\'
+                alias: doctrine_data_manager_feature
 
 when@test:
     doctrine:
